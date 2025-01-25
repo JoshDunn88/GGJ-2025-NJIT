@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameManager gm;
     public int playerNumber;
     public GameObject projectile;
     public GameObject bubbile;

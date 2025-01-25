@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
 	public static GameManager Instance { get; private set; }
 
+	public bool isGamePaused = false;
+
     private void Awake()
     {
         if (Instance != null)
@@ -32,7 +34,8 @@ public class GameManager : MonoBehaviour
 			Debug.Log("New instance instantiated");
 			Instance = this;
 		}
-	}
+
+    }
 
 	public void PlayGame()
 	{
@@ -53,8 +56,8 @@ public class GameManager : MonoBehaviour
 	// Pauses the game; activates pause panel
 	public void PauseGame()
 	{
-
-		Time.timeScale = 0f;
+        
+        Time.timeScale = 0f;
 
 		pauseMenuScreen.SetActive(true);                                    // Activate Pause Panel
 
@@ -65,7 +68,7 @@ public class GameManager : MonoBehaviour
 	// Resumes the game; deactivates pause panel
 	public void ResumeGame()
 	{
-
+		
 		pauseMenuScreen.SetActive(false);                                   // Deactivate pause panel
 
 		Time.timeScale = 1f;
@@ -86,4 +89,21 @@ public class GameManager : MonoBehaviour
 		GameObject point = Instantiate(scorePrefab, transform.position, Quaternion.identity) as GameObject;
 		point.transform.SetParent(scoreGrids[player].transform);
 	}
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isGamePaused)
+            {
+				isGamePaused = false;
+                ResumeGame();
+            }
+            else
+            {
+                isGamePaused = true;
+                PauseGame();
+            }
+        }
+    }
 }

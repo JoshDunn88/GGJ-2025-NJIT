@@ -5366,6 +5366,7 @@ MonoBehaviour:
   menuPanel: {fileID: 1559784548}
   pauseMenuScreen: {fileID: 490456476}
   level: {fileID: 629578679}
+  isGamePaused: 0
 --- !u!4 &1292003712
 Transform:
   m_ObjectHideFlags: 0
@@ -6722,6 +6723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31756a9a10810724bbd75b704bd79451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 1292003711}
   playerNumber: 1
   projectile: {fileID: 7521824510019111563, guid: 1d4833e9630622b45b95fb0282bed8c8, type: 3}
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
@@ -7596,6 +7598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31756a9a10810724bbd75b704bd79451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 1292003711}
   playerNumber: 2
   projectile: {fileID: 7521824510019111563, guid: 1d4833e9630622b45b95fb0282bed8c8, type: 3}
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}

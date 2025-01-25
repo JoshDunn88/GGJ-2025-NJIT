@@ -45,13 +45,13 @@ public class LevelManager : MonoBehaviour
 		// Initiate the WaitForSeconds
 		oneSec = new WaitForSeconds(1);
 
-		StartCoroutine("StartGame");
-		announcerText.gameObject.SetActive(false);
+		StartCoroutine(nameof(InitRound));
+		//announcerText.gameObject.SetActive(true); was false
 	}
 
 	void HandleRoundTimer()
     {
-		timerText.GetComponent<Text>().text = "Time: " + currentTimer.ToString();
+		timerText.GetComponent<TMP_Text>().text = "Time: " + currentTimer.ToString();
 
 		internalTimer += Time.deltaTime; // every one second based on frames
 
@@ -71,19 +71,19 @@ public class LevelManager : MonoBehaviour
 	public void EndRound(bool timeOut = false)
     {
 		countdown = false;
-		timerText.GetComponent<Text>().text = roundTimer.ToString();
+		timerText.GetComponent<TMP_Text>().text = roundTimer.ToString();
 
 		if (timeOut)
         {
 			announcerText.gameObject.SetActive(true);
-			announcerText.GetComponent<Text>().text = "Time Out!";
-			announcerText.GetComponent<Text>().color = Color.cyan;
+			announcerText.GetComponent<TMP_Text>().text = "Time Out!";
+			announcerText.GetComponent<TMP_Text>().color = Color.cyan;
 		}
         else
         {
 			announcerText.gameObject.SetActive(true);
-			announcerText.GetComponent<Text>().text = "K.O.";
-			announcerText.GetComponent<Text>().color = Color.red;
+			announcerText.GetComponent<TMP_Text>().text = "K.O.";
+			announcerText.GetComponent<TMP_Text>().color = Color.red;
 		}
 
 		// Disable controls
@@ -178,25 +178,27 @@ public class LevelManager : MonoBehaviour
 
 	IEnumerator EnableControl()
     {
+		
 		announcerText.gameObject.SetActive(true);
-		announcerText.GetComponent<Text>().text = "Round " + currentRound;
-		announcerText.GetComponent<Text>().color = Color.white;
+		
+        announcerText.GetComponent<TMP_Text>().text = "Round " + currentRound;
+		announcerText.GetComponent<TMP_Text>().color = Color.white;
 		yield return oneSec;
 		yield return oneSec;
 		yield return new WaitForSeconds(2);
 
 		// Change UI text for each second that passes
-		announcerText.GetComponent<Text>().text = "3";
-		announcerText.GetComponent<Text>().color = Color.green;
+		announcerText.GetComponent<TMP_Text>().text = "3";
+		announcerText.GetComponent<TMP_Text>().color = Color.green;
 		yield return oneSec;
-		announcerText.GetComponent<Text>().text = "2";
-		announcerText.GetComponent<Text>().color = Color.yellow;
+		announcerText.GetComponent<TMP_Text>().text = "2";
+		announcerText.GetComponent<TMP_Text>().color = Color.yellow;
 		yield return oneSec;
-		announcerText.GetComponent<Text>().text = "1";
-		announcerText.GetComponent<Text>().color = Color.red;
+		announcerText.GetComponent<TMP_Text>().text = "1";
+		announcerText.GetComponent<TMP_Text>().color = Color.red;
 		yield return oneSec;
-		announcerText.GetComponent<Text>().text = "FIGHT!";
-		announcerText.GetComponent<Text>().color = Color.red;
+		announcerText.GetComponent<TMP_Text>().text = "FIGHT!";
+		announcerText.GetComponent<TMP_Text>().color = Color.red;
 
 		/*
 		 * ENABLER PLAYER CONTROL HERE
