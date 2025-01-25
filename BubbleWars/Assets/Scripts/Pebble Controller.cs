@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PebbleController : MonoBehaviour
 {
+   
     public float timetolive;
     private float birthtime;
     private float deathtime;
     // Start is called before the first frame update
     void Start()
     {
+       
         birthtime = Time.time;
         deathtime = birthtime + timetolive;
     }
@@ -40,6 +42,17 @@ public class PebbleController : MonoBehaviour
             if (other.gameObject) Destroy(other.gameObject);
             //if no piercing powerup
             if (gameObject) Destroy(gameObject);
+        }
+
+        //might not need 2 ifs here
+        if (other.gameObject.CompareTag("Player1"))
+        {
+            other.gameObject.GetComponent<PlayerMovement>().Die();
+        }
+
+        else if (other.gameObject.CompareTag("Player2"))
+        {
+            other.gameObject.GetComponent<PlayerMovement>().Die();
         }
     }
 }

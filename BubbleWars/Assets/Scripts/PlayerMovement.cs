@@ -19,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public float bubbleChargeTime;
     public float bubbleSizeIncrement;
 
+    //for pause etc
+    public bool canShoot;
+    public bool canMove;
+    public bool canBlow;
 
     private Rigidbody2D rb;
     private GameObject currentBubble;
@@ -27,6 +31,21 @@ public class PlayerMovement : MonoBehaviour
     private float chargeStart;
 
     private bool chargin;
+
+    public void Die()
+    {
+        if (playerNumber == 1) 
+        {
+            //p2 won
+            gm.level.EndRound();
+        }
+
+        if (playerNumber == 2)
+        {
+            //p1 won
+            gm.level.EndRound();
+        }
+    }
 
     private void ChargeShot()
     {
@@ -79,9 +98,13 @@ public class PlayerMovement : MonoBehaviour
         currentBubble = null;
     }
 
+    
     // Start is called before the first frame update
     void Start()
     {
+        canShoot = false;
+        canMove = false;
+        canBlow = false;
         lastShot = Time.time - fireRate;
         rb = GetComponent<Rigidbody2D>();
         chargin = false;
@@ -92,12 +115,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerNumber == 1)
         {
-            if (Input.GetKeyDown(KeyCode.V) && Time.time >= lastShot + fireRate)
+            if (Input.GetKeyDown(KeyCode.V) && Time.time >= lastShot + fireRate && canShoot)
             {
                 Shoot();
             }
 
-            if (Input.GetKeyDown(KeyCode.B) && Time.time >= lastShot + fireRate)
+            if (Input.GetKeyDown(KeyCode.B) && Time.time >= lastShot + fireRate && canBlow)
             {
                 ChargeBubbleStart();
             }
@@ -111,13 +134,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerNumber == 2)
         {
-            if (Input.GetKeyDown(KeyCode.RightBracket) && Time.time >= lastShot + fireRate)
+            if (Input.GetKeyDown(KeyCode.RightBracket) && Time.time >= lastShot + fireRate && canShoot)
             {
                 Shoot();
             }
 
 
-            if (Input.GetKeyDown(KeyCode.Backslash) && Time.time >= lastShot + fireRate)
+            if (Input.GetKeyDown(KeyCode.Backslash) && Time.time >= lastShot + fireRate && canBlow)
             {
                 ChargeBubbleStart();
             }
@@ -141,73 +164,78 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerNumber == 1)
         {
-            if (Input.GetKey(KeyCode.W))
+            if (canMove)
             {
-                newPosition.y = transform.position.y + movement;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                newPosition.y = transform.position.y - movement;
-            }
+                if (Input.GetKey(KeyCode.W))
+                {
+                    newPosition.y = transform.position.y + movement;
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    newPosition.y = transform.position.y - movement;
+                }
 
-            if (Input.GetKey(KeyCode.A))
-            {
-                newRotation.z = newRotation.z + rotation;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                newRotation.z = newRotation.z - rotation;
-            }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    newRotation.z = newRotation.z + rotation;
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    newRotation.z = newRotation.z - rotation;
+                }
 
-            if (Input.GetKey(KeyCode.B) && chargin)
-            {
-                ChargeBubble();
-            }
+                if (Input.GetKey(KeyCode.B) && chargin)
+                {
+                    ChargeBubble();
+                }
 
-            //rotation clamp
-            if (newRotation.z < 270f && newRotation.z > 180f)
-            {
-                newRotation.z = 270f;
-            }
+                //rotation clamp
+                if (newRotation.z < 270f && newRotation.z > 180f)
+                {
+                    newRotation.z = 270f;
+                }
 
-            if (newRotation.z > 90f && newRotation.z < 180f)
-            {
-                newRotation.z = 90f;
+                if (newRotation.z > 90f && newRotation.z < 180f)
+                {
+                    newRotation.z = 90f;
+                }
             }
         }
-
         if (playerNumber == 2)
         {
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (canMove)
             {
-                newPosition.y = transform.position.y + movement;
-            }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                newPosition.y = transform.position.y - movement;
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                newRotation.z = newRotation.z + rotation;
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                newRotation.z = newRotation.z - rotation;
-            }
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    newPosition.y = transform.position.y + movement;
+                }
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    newPosition.y = transform.position.y - movement;
+                }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    newRotation.z = newRotation.z + rotation;
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    newRotation.z = newRotation.z - rotation;
+                }
 
-            if (Input.GetKey(KeyCode.Backslash) && chargin)
-            {
-                ChargeBubble();
-            }
-            //rotation clamp, different for p2 because rotated to face center
-            if (newRotation.z > 270f && newRotation.z < 360f)
-            {
-                newRotation.z = 270f;
-            }
+                if (Input.GetKey(KeyCode.Backslash) && chargin)
+                {
+                    ChargeBubble();
+                }
+                //rotation clamp, different for p2 because rotated to face center
+                if (newRotation.z > 270f && newRotation.z < 360f)
+                {
+                    newRotation.z = 270f;
+                }
 
-            if (newRotation.z < 90f && newRotation.z > 0f)
-            {
-                newRotation.z = 90f;
+                if (newRotation.z < 90f && newRotation.z > 0f)
+                {
+                    newRotation.z = 90f;
+                }
             }
         }
 

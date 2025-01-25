@@ -3131,7 +3131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPositions: []
-  players: []
+  players:
+  - {fileID: 1558184801}
+  - {fileID: 1630403957}
   rounds: 3
   countdown: 0
   roundTimer: 30
@@ -6706,7 +6708,7 @@ GameObject:
   - component: {fileID: 1558184802}
   m_Layer: 0
   m_Name: P1
-  m_TagString: Untagged
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6735,6 +6737,9 @@ MonoBehaviour:
   projectileChargeTime: 3
   bubbleChargeTime: 3
   bubbleSizeIncrement: 0.8
+  canShoot: 0
+  canMove: 0
+  canBlow: 0
 --- !u!50 &1558184803
 Rigidbody2D:
   serializedVersion: 4
@@ -7581,7 +7586,7 @@ GameObject:
   - component: {fileID: 1630403958}
   m_Layer: 0
   m_Name: P2
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7610,6 +7615,9 @@ MonoBehaviour:
   projectileChargeTime: 3
   bubbleChargeTime: 3
   bubbleSizeIncrement: 0.8
+  canShoot: 0
+  canMove: 0
+  canBlow: 0
 --- !u!50 &1630403959
 Rigidbody2D:
   serializedVersion: 4

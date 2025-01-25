@@ -97,7 +97,14 @@ public class LevelManager : MonoBehaviour
     private void DisableControl()
 	{
 		// Call to pause player controls
-	}
+		players[0].GetComponent<PlayerMovement>().canMove = false;
+        players[0].GetComponent<PlayerMovement>().canBlow = false;
+        players[0].GetComponent<PlayerMovement>().canShoot = false;
+
+        players[1].GetComponent<PlayerMovement>().canMove = false;
+        players[1].GetComponent<PlayerMovement>().canBlow = false;
+        players[1].GetComponent<PlayerMovement>().canShoot = false;
+    }
 
     IEnumerator StartGame()
     {
@@ -200,12 +207,19 @@ public class LevelManager : MonoBehaviour
 		announcerText.GetComponent<TMP_Text>().text = "FIGHT!";
 		announcerText.GetComponent<TMP_Text>().color = Color.red;
 
-		/*
+        /*
 		 * ENABLER PLAYER CONTROL HERE
 		 * ih.enabled = true;
 		 */
+        players[0].GetComponent<PlayerMovement>().canMove = true;
+        players[0].GetComponent<PlayerMovement>().canBlow = true;
+        players[0].GetComponent<PlayerMovement>().canShoot = true;
 
-		yield return oneSec;
+        players[1].GetComponent<PlayerMovement>().canMove = true;
+        players[1].GetComponent<PlayerMovement>().canBlow = true;
+        players[1].GetComponent<PlayerMovement>().canShoot = true;
+
+        yield return oneSec;
 		announcerText.gameObject.SetActive(false);
 		countdown = true;
 	}
