@@ -7,8 +7,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public int playerNumber;
     public GameObject projectile;
+    public GameObject bubbile;
     public float playerSpeed;
     public float projectileSpeed;
+    public float bubbleSpeed;
     public float playerRotation;
 
     private Rigidbody2D rb;
@@ -54,12 +56,20 @@ public class PlayerMovement : MonoBehaviour
                 newRotation.z = newRotation.z - rotation;
             }
 
-            if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetKeyDown(KeyCode.V))
             {
                 Vector3 projectilePosition = transform.position + transform.right * 0.7f;
                 projectilePosition.z = 0;
                 GameObject pebble = Instantiate(projectile, projectilePosition, transform.rotation);
                 pebble.GetComponent<Rigidbody2D>().velocity = transform.right * projectileSpeed;
+            }
+
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                Vector3 bubblePosition = transform.position + transform.right * 0.7f;
+                bubblePosition.z = 0;
+                GameObject bubble = Instantiate(bubbile, bubblePosition, transform.rotation);
+                bubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
             }
 
             //rotation clamp
@@ -80,24 +90,24 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerNumber == 2)
         {
-            if (Input.GetKey(KeyCode.I))
+            if (Input.GetKey(KeyCode.UpArrow))
             {
                 newPosition.y = transform.position.y + movement;
             }
-            if (Input.GetKey(KeyCode.K))
+            if (Input.GetKey(KeyCode.DownArrow))
             {
                 newPosition.y = transform.position.y - movement;
             }
-            if (Input.GetKey(KeyCode.J))
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
                 newRotation.z = newRotation.z + rotation;
             }
-            if (Input.GetKey(KeyCode.L))
+            if (Input.GetKey(KeyCode.RightArrow))
             {
                 newRotation.z = newRotation.z - rotation;
             }
 
-            if (Input.GetKeyDown(KeyCode.Slash))
+            if (Input.GetKeyDown(KeyCode.RightBracket))
             {
                 Vector3 projectilePosition = transform.position + transform.right * 0.7f;
                 projectilePosition.z = 0;
@@ -105,7 +115,15 @@ public class PlayerMovement : MonoBehaviour
                 pebble.GetComponent<Rigidbody2D>().velocity = transform.right * projectileSpeed;
             }
 
-            //rotation clamp
+            if (Input.GetKeyDown(KeyCode.Backslash))
+            {
+                Vector3 bubblePosition = transform.position + transform.right * 0.7f;
+                bubblePosition.z = 0;
+                GameObject bubble = Instantiate(bubbile, bubblePosition, transform.rotation);
+                bubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
+            }
+
+            //rotation clamp, different for p2 because rotated to face center
             if (newRotation.z > 270f && newRotation.z < 360f)
             {
                 print("under");

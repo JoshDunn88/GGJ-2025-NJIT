@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 1028657212}
   m_Layer: 0
   m_Name: P1
-  m_TagString: Untagged
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -755,7 +755,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -886,8 +886,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 1
   projectile: {fileID: 7521824510019111563, guid: 1d4833e9630622b45b95fb0282bed8c8, type: 3}
+  bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 6
   projectileSpeed: 2
+  bubbleSpeed: 1
   playerRotation: 5
 --- !u!1 &1653980269
 GameObject:
@@ -1034,7 +1036,7 @@ GameObject:
   - component: {fileID: 2076010541}
   m_Layer: 0
   m_Name: P2
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1051,7 +1053,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -1182,8 +1184,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 2
   projectile: {fileID: 7521824510019111563, guid: 1d4833e9630622b45b95fb0282bed8c8, type: 3}
+  bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 6
   projectileSpeed: 2
+  bubbleSpeed: 1
   playerRotation: 5
 --- !u!1001 &8604512202240813456
 PrefabInstance:
