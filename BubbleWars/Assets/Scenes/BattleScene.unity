@@ -888,9 +888,9 @@ MonoBehaviour:
   projectile: {fileID: 7521824510019111563, guid: 1d4833e9630622b45b95fb0282bed8c8, type: 3}
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 6
-  projectileSpeed: 2
+  projectileSpeed: 6
   bubbleSpeed: 1
-  playerRotation: 5
+  playerRotation: 9
   fireRate: 0.7
 --- !u!1 &1653980269
 GameObject:
@@ -1187,9 +1187,9 @@ MonoBehaviour:
   projectile: {fileID: 7521824510019111563, guid: 1d4833e9630622b45b95fb0282bed8c8, type: 3}
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 6
-  projectileSpeed: 2
+  projectileSpeed: 6
   bubbleSpeed: 1
-  playerRotation: 5
+  playerRotation: 9
   fireRate: 0.7
 --- !u!1001 &8604512202240813456
 PrefabInstance:

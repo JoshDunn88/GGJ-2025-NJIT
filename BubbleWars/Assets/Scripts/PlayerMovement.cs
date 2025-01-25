@@ -17,6 +17,22 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private float lastShot;
 
+    private void Shoot()
+    {
+        lastShot = Time.time;
+        Vector3 projectilePosition = transform.position + transform.right * 0.7f;
+        projectilePosition.z = 0;
+        GameObject pebble = Instantiate(projectile, projectilePosition, transform.rotation);
+        pebble.GetComponent<Rigidbody2D>().velocity = transform.right * projectileSpeed;
+    }
+    private void Blow()
+    {
+        lastShot = Time.time;
+        Vector3 bubblePosition = transform.position + transform.right * 0.7f;
+        bubblePosition.z = 0;
+        GameObject bubble = Instantiate(bubbile, bubblePosition, transform.rotation);
+        bubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +43,31 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (playerNumber == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.V) && Time.time >= lastShot + fireRate)
+            {
+                Shoot();
+            }
+
+            if (Input.GetKeyDown(KeyCode.B) && Time.time >= lastShot + fireRate)
+            {
+                Blow();
+            }
+        }
+
+        if (playerNumber == 2)
+        {
+            if (Input.GetKeyDown(KeyCode.RightBracket) && Time.time >= lastShot + fireRate)
+            {
+                Shoot();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Backslash) && Time.time >= lastShot + fireRate)
+            {
+                Blow();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -59,37 +99,17 @@ public class PlayerMovement : MonoBehaviour
                 newRotation.z = newRotation.z - rotation;
             }
 
-            if (Input.GetKeyDown(KeyCode.V) && Time.time >= lastShot + fireRate)
-            {
-                lastShot = Time.time;
-                Vector3 projectilePosition = transform.position + transform.right * 0.7f;
-                projectilePosition.z = 0;
-                GameObject pebble = Instantiate(projectile, projectilePosition, transform.rotation);
-                pebble.GetComponent<Rigidbody2D>().velocity = transform.right * projectileSpeed;
-            }
-
-            if (Input.GetKeyDown(KeyCode.B) && Time.time >= lastShot + fireRate)
-            {
-                lastShot = Time.time;
-                Vector3 bubblePosition = transform.position + transform.right * 0.7f;
-                bubblePosition.z = 0;
-                GameObject bubble = Instantiate(bubbile, bubblePosition, transform.rotation);
-                bubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
-            }
+            
 
             //rotation clamp
             if (newRotation.z < 270f && newRotation.z > 180f)
             {
-                print("under");
                 newRotation.z = 270f;
-
             }
 
             if (newRotation.z > 90f && newRotation.z < 180f)
             {
-                print("over");
                 newRotation.z = 90f;
-
             }
         }
 
@@ -112,45 +132,19 @@ public class PlayerMovement : MonoBehaviour
                 newRotation.z = newRotation.z - rotation;
             }
 
-            if (Input.GetKeyDown(KeyCode.RightBracket) && Time.time >= lastShot + fireRate)
-            {
-                lastShot = Time.time;
-                Vector3 projectilePosition = transform.position + transform.right * 0.7f;
-                projectilePosition.z = 0;
-                GameObject pebble = Instantiate(projectile, projectilePosition, transform.rotation);
-                pebble.GetComponent<Rigidbody2D>().velocity = transform.right * projectileSpeed;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Backslash) && Time.time >= lastShot + fireRate)
-            {
-                lastShot = Time.time;
-                Vector3 bubblePosition = transform.position + transform.right * 0.7f;
-                bubblePosition.z = 0;
-                GameObject bubble = Instantiate(bubbile, bubblePosition, transform.rotation);
-                bubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
-            }
-
             //rotation clamp, different for p2 because rotated to face center
             if (newRotation.z > 270f && newRotation.z < 360f)
             {
-                print("under");
                 newRotation.z = 270f;
-
             }
 
             if (newRotation.z < 90f && newRotation.z > 0f)
             {
-                print("over");
                 newRotation.z = 90f;
-
             }
         }
 
         transform.position = newPosition;
-
-        //rotation clamp 
-        
-            
         transform.rotation = Quaternion.Euler(newRotation.x, newRotation.y, newRotation.z);
     }
 }
