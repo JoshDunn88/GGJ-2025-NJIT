@@ -20,7 +20,7 @@ public class BubbleController : MonoBehaviour
     {
         if (Time.time > deathtime)
         {
-            Destroy(gameObject);
+            if (gameObject) Destroy(gameObject);
         }
     }
 
@@ -29,7 +29,7 @@ public class BubbleController : MonoBehaviour
         //6 is arena walls
         if (other.gameObject.layer == LayerMask.NameToLayer("Arena Bounds"))
         {
-            Destroy(gameObject);
+            if (gameObject) Destroy(gameObject);
         }
     }
 }

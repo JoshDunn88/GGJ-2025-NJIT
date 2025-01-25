@@ -31,15 +31,15 @@ public class PebbleController : MonoBehaviour
         //6 is arena walls
         if (other.gameObject.layer == LayerMask.NameToLayer("Arena Bounds"))
         {
-            Destroy(gameObject);
+            if (gameObject) Destroy(gameObject);
         }
 
         //7 is bubble layer
         if (other.gameObject.layer == LayerMask.NameToLayer("Bubble"))
         {
-            Destroy(other.gameObject);
+            if (other.gameObject) Destroy(other.gameObject);
             //if no piercing powerup
-            Destroy(gameObject);
+            if (gameObject) Destroy(gameObject);
         }
     }
 }

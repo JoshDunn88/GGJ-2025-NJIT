@@ -889,9 +889,12 @@ MonoBehaviour:
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 6
   projectileSpeed: 6
-  bubbleSpeed: 1
+  bubbleSpeed: 0.5
   playerRotation: 9
   fireRate: 0.7
+  projectileChargeTime: 5
+  bubbleChargeTime: 3
+  bubbleSizeIncrement: 0.7
 --- !u!1 &1653980269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,9 +1191,12 @@ MonoBehaviour:
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 6
   projectileSpeed: 6
-  bubbleSpeed: 1
+  bubbleSpeed: 0.5
   playerRotation: 9
   fireRate: 0.7
+  projectileChargeTime: 5
+  bubbleChargeTime: 3
+  bubbleSizeIncrement: 0.7
 --- !u!1001 &8604512202240813456
 PrefabInstance:
   m_ObjectHideFlags: 0

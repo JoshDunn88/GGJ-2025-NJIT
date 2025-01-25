@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,10 +14,55 @@ public class PlayerMovement : MonoBehaviour
     public float bubbleSpeed;
     public float playerRotation;
     public float fireRate;
+    public float projectileChargeTime;
+    public float bubbleChargeTime;
+    public float bubbleSizeIncrement;
+
 
     private Rigidbody2D rb;
+    private GameObject currentBubble;
+    private GameObject currentPebble;
     private float lastShot;
+    private float chargeStart;
 
+    private bool chargin;
+
+    private void ChargeShot()
+    {
+        
+    }
+
+    private void ChargeBubbleStart()
+    {
+        Vector3 bubblePosition = transform.position + transform.right * 0.7f;
+        bubblePosition.z = 0;
+        currentBubble = Instantiate(bubbile, bubblePosition, transform.rotation);
+        chargeStart = Time.time;
+        chargin = true;
+    }
+    private void ChargeBubble()
+    {
+        //can happen if charged bubble hits or is hit by enemy pebble, penalize with reload time
+        if (!currentBubble)
+        {
+            chargin = false;
+            lastShot = Time.time;
+            return;
+        }
+
+        Vector3 bubblePosition = transform.position + transform.right * 0.7f;
+        bubblePosition.z = 0;
+        currentBubble.transform.position = bubblePosition;
+        //enforce max bubble size
+        if(Time.time < chargeStart + bubbleChargeTime)
+        {
+            float sizeIncrement = bubbleSizeIncrement / 100;
+            Vector3 sizeVector = new Vector3(sizeIncrement, sizeIncrement, 0f);
+            currentBubble.transform.localScale += sizeVector;
+
+        }
+            
+    }
     private void Shoot()
     {
         lastShot = Time.time;
@@ -28,16 +74,16 @@ public class PlayerMovement : MonoBehaviour
     private void Blow()
     {
         lastShot = Time.time;
-        Vector3 bubblePosition = transform.position + transform.right * 0.7f;
-        bubblePosition.z = 0;
-        GameObject bubble = Instantiate(bubbile, bubblePosition, transform.rotation);
-        bubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
+        currentBubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
+        currentBubble = null;
     }
+
     // Start is called before the first frame update
     void Start()
     {
         lastShot = Time.time - fireRate;
         rb = GetComponent<Rigidbody2D>();
+        chargin = false;
     }
 
     // Update is called once per frame
@@ -52,6 +98,12 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.B) && Time.time >= lastShot + fireRate)
             {
+                ChargeBubbleStart();
+            }
+
+            if (Input.GetKeyUp(KeyCode.B) && chargin)
+            {
+                chargin = false;
                 Blow();
             }
         }
@@ -63,8 +115,15 @@ public class PlayerMovement : MonoBehaviour
                 Shoot();
             }
 
+
             if (Input.GetKeyDown(KeyCode.Backslash) && Time.time >= lastShot + fireRate)
             {
+                ChargeBubbleStart();
+            }
+            
+            if (Input.GetKeyUp(KeyCode.Backslash) && chargin)
+            {
+                chargin = false;
                 Blow();
             }
         }
@@ -99,7 +158,10 @@ public class PlayerMovement : MonoBehaviour
                 newRotation.z = newRotation.z - rotation;
             }
 
-            
+            if (Input.GetKey(KeyCode.B) && chargin)
+            {
+                ChargeBubble();
+            }
 
             //rotation clamp
             if (newRotation.z < 270f && newRotation.z > 180f)
@@ -132,6 +194,10 @@ public class PlayerMovement : MonoBehaviour
                 newRotation.z = newRotation.z - rotation;
             }
 
+            if (Input.GetKey(KeyCode.Backslash) && chargin)
+            {
+                ChargeBubble();
+            }
             //rotation clamp, different for p2 because rotated to face center
             if (newRotation.z > 270f && newRotation.z < 360f)
             {
