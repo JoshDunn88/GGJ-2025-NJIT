@@ -885,7 +885,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 1
-  playerSpeed: 3
+  playerSpeed: 8
+  playerRotation: 1
 --- !u!1 &1653980269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,6 +1180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 2
   playerSpeed: 3
+  playerRotation: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
