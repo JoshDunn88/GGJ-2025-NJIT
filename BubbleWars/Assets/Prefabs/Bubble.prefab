@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 523909701549095305}
   - component: {fileID: 1188313243640673978}
   - component: {fileID: 4124006507108526275}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -161,4 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0984d34e2f608794f8a45c08a0f64188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timetolive: 1
+  timetolive: 15

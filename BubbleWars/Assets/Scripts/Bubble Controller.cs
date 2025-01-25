@@ -23,4 +23,13 @@ public class BubbleController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        //6 is arena walls
+        if (other.gameObject.layer == LayerMask.NameToLayer("Arena Bounds"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

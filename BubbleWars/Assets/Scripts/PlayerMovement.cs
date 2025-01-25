@@ -12,12 +12,15 @@ public class PlayerMovement : MonoBehaviour
     public float projectileSpeed;
     public float bubbleSpeed;
     public float playerRotation;
+    public float fireRate;
 
     private Rigidbody2D rb;
+    private float lastShot;
 
     // Start is called before the first frame update
     void Start()
     {
+        lastShot = Time.time - fireRate;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -56,16 +59,18 @@ public class PlayerMovement : MonoBehaviour
                 newRotation.z = newRotation.z - rotation;
             }
 
-            if (Input.GetKeyDown(KeyCode.V))
+            if (Input.GetKeyDown(KeyCode.V) && Time.time >= lastShot + fireRate)
             {
+                lastShot = Time.time;
                 Vector3 projectilePosition = transform.position + transform.right * 0.7f;
                 projectilePosition.z = 0;
                 GameObject pebble = Instantiate(projectile, projectilePosition, transform.rotation);
                 pebble.GetComponent<Rigidbody2D>().velocity = transform.right * projectileSpeed;
             }
 
-            if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.B) && Time.time >= lastShot + fireRate)
             {
+                lastShot = Time.time;
                 Vector3 bubblePosition = transform.position + transform.right * 0.7f;
                 bubblePosition.z = 0;
                 GameObject bubble = Instantiate(bubbile, bubblePosition, transform.rotation);
@@ -107,16 +112,18 @@ public class PlayerMovement : MonoBehaviour
                 newRotation.z = newRotation.z - rotation;
             }
 
-            if (Input.GetKeyDown(KeyCode.RightBracket))
+            if (Input.GetKeyDown(KeyCode.RightBracket) && Time.time >= lastShot + fireRate)
             {
+                lastShot = Time.time;
                 Vector3 projectilePosition = transform.position + transform.right * 0.7f;
                 projectilePosition.z = 0;
                 GameObject pebble = Instantiate(projectile, projectilePosition, transform.rotation);
                 pebble.GetComponent<Rigidbody2D>().velocity = transform.right * projectileSpeed;
             }
 
-            if (Input.GetKeyDown(KeyCode.Backslash))
+            if (Input.GetKeyDown(KeyCode.Backslash) && Time.time >= lastShot + fireRate)
             {
+                lastShot = Time.time;
                 Vector3 bubblePosition = transform.position + transform.right * 0.7f;
                 bubblePosition.z = 0;
                 GameObject bubble = Instantiate(bubbile, bubblePosition, transform.rotation);
