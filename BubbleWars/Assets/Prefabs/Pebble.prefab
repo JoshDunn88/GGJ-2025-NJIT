@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8459885341481435280}
   - component: {fileID: 8921808163490663659}
   - component: {fileID: 739470820233784467}
+  - component: {fileID: 4247416014246694597}
   m_Layer: 0
   m_Name: Pebble
   m_TagString: Untagged
@@ -148,3 +149,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4247416014246694597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521824510019111563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96802db4170eecc4c82b8ad83730da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

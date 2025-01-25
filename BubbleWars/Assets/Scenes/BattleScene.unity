@@ -1237,6 +1237,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4124006507108526275, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
+      propertyPath: timetolive
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
       propertyPath: m_Name
       value: Bubble
