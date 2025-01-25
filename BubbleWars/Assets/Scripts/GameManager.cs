@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
 	public GameObject gamePanel;
 	public GameObject menuPanel;
+	public GameObject pauseMenuScreen;
 
 	public LevelManager level;
 
@@ -47,6 +48,30 @@ public class GameManager : MonoBehaviour
 		gamePanel.SetActive(false);
 
 		NewInstance();
+	}
+
+	// Pauses the game; activates pause panel
+	public void PauseGame()
+	{
+
+		Time.timeScale = 0f;
+
+		pauseMenuScreen.SetActive(true);                                    // Activate Pause Panel
+
+		Debug.Log("Game is paused");
+
+	}
+
+	// Resumes the game; deactivates pause panel
+	public void ResumeGame()
+	{
+
+		pauseMenuScreen.SetActive(false);                                   // Deactivate pause panel
+
+		Time.timeScale = 1f;
+
+		Debug.Log("Game is unpaused");
+
 	}
 
 	public void QuitGame()
