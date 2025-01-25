@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 	public GameObject gamePanel;
 	public GameObject menuPanel;
 
+	public LevelManager level;
+
 	public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -21,13 +23,32 @@ public class GameManager : MonoBehaviour
 		Instance = this;
     }
 
+	// Create new instance of GameManager
+	void NewInstance()
+	{
+		if (Instance == null)
+		{
+			Debug.Log("New instance instantiated");
+			Instance = this;
+		}
+	}
+
 	public void PlayGame()
 	{
 		menuPanel.SetActive(false);
-
 		gamePanel.SetActive(true);
+
+		level.PlayGame();
 	}
-	
+
+	public void MainMenu()
+	{
+		menuPanel.SetActive(true);
+		gamePanel.SetActive(false);
+
+		NewInstance();
+	}
+
 	public void QuitGame()
     {
 		Application.Quit();

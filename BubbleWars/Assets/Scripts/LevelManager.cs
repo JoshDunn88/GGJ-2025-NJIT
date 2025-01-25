@@ -10,8 +10,6 @@ public class LevelManager : MonoBehaviour
 	public Transform[] spawnPositions; // Player spawn points 
 	public GameObject[] players;
 
-	PlayerStatus player;
-
 	public int rounds = 3; // Default rounds to 3.
 	int currentRound = 1; // Start current round at 1.
 
@@ -24,15 +22,15 @@ public class LevelManager : MonoBehaviour
 	public GameObject announcerText;
 	public GameObject timerText;
 
-
-	private void Start()
+	/*
+	void Start()
     {
 		// Initiate the WaitForSeconds
 		oneSec = new WaitForSeconds(1);
 
-		StartCoroutine("Start Game");
+		StartCoroutine("StartGame");
 		announcerText.gameObject.SetActive(false);
-	}
+	}*/
 
     private void Update()
     {
@@ -42,9 +40,18 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+	public void PlayGame()
+	{
+		// Initiate the WaitForSeconds
+		oneSec = new WaitForSeconds(1);
+
+		StartCoroutine("StartGame");
+		announcerText.gameObject.SetActive(false);
+	}
+
 	void HandleRoundTimer()
     {
-		timerText.GetComponent<Text>().text = currentTimer.ToString();
+		timerText.GetComponent<Text>().text = "Time: " + currentTimer.ToString();
 
 		internalTimer += Time.deltaTime; // every one second based on frames
 
