@@ -48,11 +48,13 @@ public class PebbleController : MonoBehaviour
         if (other.gameObject.CompareTag("Player1"))
         {
             other.gameObject.GetComponent<PlayerMovement>().Die();
+            if (gameObject) Destroy(gameObject);
         }
 
         else if (other.gameObject.CompareTag("Player2"))
         {
             other.gameObject.GetComponent<PlayerMovement>().Die();
+            if (gameObject) Destroy(gameObject);
         }
     }
 }

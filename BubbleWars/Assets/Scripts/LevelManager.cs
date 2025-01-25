@@ -90,7 +90,7 @@ public class LevelManager : MonoBehaviour
 		DisableControl();
 
 		// Start routine for end round
-		StartCoroutine("EndRound");
+		StartCoroutine(nameof(NextRound));
 
     }
 
@@ -122,7 +122,7 @@ public class LevelManager : MonoBehaviour
 		yield return EnableControl();
 	}
 
-	IEnumerator EndRound()
+	IEnumerator NextRound()
     {
 		yield return oneSec;
 		yield return oneSec;
