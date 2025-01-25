@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    // public int playerScore;
+
     // Start is called before the first frame update
     void Start()
     {
