@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8921808163490663659}
   - component: {fileID: 739470820233784467}
   - component: {fileID: 4247416014246694597}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pebble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
