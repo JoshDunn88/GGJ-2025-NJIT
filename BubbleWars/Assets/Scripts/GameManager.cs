@@ -51,6 +51,10 @@ public class GameManager : MonoBehaviour
 		menuPanel.SetActive(true);
 		gamePanel.SetActive(false);
 
+		StopAllCoroutines();
+		level.countdown = false;
+		ResumeGame();
+
 		winnerPanel.SetActive(false);
 
 		NewInstance();
