@@ -38,12 +38,14 @@ public class PlayerMovement : MonoBehaviour
         {
             //p2 won
             gm.level.EndRound();
+            gm.level.AddScore(1);
         }
 
         if (playerNumber == 2)
         {
             //p1 won
             gm.level.EndRound();
+            gm.level.AddScore(0);
         }
     }
 

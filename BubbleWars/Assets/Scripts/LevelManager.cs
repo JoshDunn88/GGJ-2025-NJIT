@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -15,30 +14,66 @@ public class LevelManager : MonoBehaviour
 
 	// Countdown vaiables
 	public bool countdown;
-	public int roundTimer = 30; // Default time for each round.
+	public int setupTime;
 	int currentTimer;
 	float internalTimer;
+
+	public GameManager gm;
+
+	public int p1Score, p2Score;
+	public bool p1Win, p2Win;
 
 	public GameObject announcerText;
 	public GameObject timerText;
 
-	/*
-	void Start()
-    {
-		// Initiate the WaitForSeconds
-		oneSec = new WaitForSeconds(1);
+	public GameObject[] scoreGrids;
+	public GameObject scorePrefab;
 
-		StartCoroutine("StartGame");
-		announcerText.gameObject.SetActive(false);
-	}*/
-
-    private void Update()
+	private void Update()
     {
         if (countdown)
         {
 			HandleRoundTimer(); // Controls the timer
         }
-    }
+	}
+
+	public void SetRounds(int roundAmt)
+    {
+		switch (roundAmt)
+		{
+			case 1:
+				rounds = 1;
+				break;
+			case 2:
+				rounds = 2;
+				break;
+			case 3:
+				rounds = 3;
+				break;
+			default:
+				rounds = 2;
+				break;
+		}
+	}
+
+	public void SetTimer(int time)
+    {
+		switch (time)
+		{
+			case 5:
+				setupTime = 5;
+				break;
+			case 10:
+				setupTime = 10;
+				break;
+			case 15:
+				setupTime = 15;
+				break;
+			default:
+				setupTime = 10;
+				break;
+		}
+	}
 
 	public void PlayGame()
 	{
@@ -51,7 +86,7 @@ public class LevelManager : MonoBehaviour
 
 	void HandleRoundTimer()
     {
-		timerText.GetComponent<TMP_Text>().text = "Time: " + currentTimer.ToString();
+		timerText.GetComponent<TMP_Text>().text = currentTimer.ToString();
 
 		internalTimer += Time.deltaTime; // every one second based on frames
 
@@ -63,28 +98,17 @@ public class LevelManager : MonoBehaviour
 
 		if (currentTimer <= 0)
         {
-			EndRound(true);
+			// EndRound(true);
+			timerText.gameObject.SetActive(false);
 			countdown = false;
         }
     }
 
-	public void EndRound(bool timeOut = false)
+	public void EndRound()
     {
-		countdown = false;
-		timerText.GetComponent<TMP_Text>().text = roundTimer.ToString();
-
-		if (timeOut)
-        {
-			announcerText.gameObject.SetActive(true);
-			announcerText.GetComponent<TMP_Text>().text = "Time Out!";
-			announcerText.GetComponent<TMP_Text>().color = Color.cyan;
-		}
-        else
-        {
-			announcerText.gameObject.SetActive(true);
-			announcerText.GetComponent<TMP_Text>().text = "K.O.";
-			announcerText.GetComponent<TMP_Text>().color = Color.red;
-		}
+		announcerText.gameObject.SetActive(true);
+		announcerText.GetComponent<TMP_Text>().text = "POPPED!";
+		announcerText.GetComponent<TMP_Text>().color = Color.red;
 
 		// Disable controls
 		DisableControl();
@@ -116,8 +140,10 @@ public class LevelManager : MonoBehaviour
     {
 		announcerText.gameObject.SetActive(false);
 
-		currentTimer = roundTimer;
+		currentTimer = setupTime;
 		countdown = false;
+
+		timerText.GetComponent<TMP_Text>().text = currentTimer.ToString();
 
 		yield return EnableControl();
 	}
@@ -128,30 +154,6 @@ public class LevelManager : MonoBehaviour
 		yield return oneSec;
 		yield return oneSec;
 
-		// Find player that won
-		// vPlayer = FindWinner();
-
-		// If time run out; its null
-		/*
-		 * if (vPlayer == null)
-		 * {
-		 *		announcerText.gameObject.SetActive(true);
-				announcerText.GetComponent<Text>().text = "Draw";
-				announcerText.GetComponent<Text>().color = Color.blue;	
-		 * }
-		 * else
-		 * {
-		 *		announcerText.gameObject.SetActive(true);
-				announcerText.GetComponent<Text>().text = vPlayer.playerId + "Wins!";
-				announcerText.GetComponent<Text>().color = Color.red;
-		 */
-
-		yield return oneSec;
-		yield return oneSec;
-		yield return oneSec;
-
-		currentRound++;
-
 		bool matchOver = isMatchOver();
 
 		if (!matchOver)
@@ -160,8 +162,26 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-			// Disable player control
-			// Show End game panel
+			DisableControl();
+			gm.GameWin();
+		}
+
+		currentRound++;
+	}
+
+	// Add score indicator to the scoring player
+	public void AddScore(int playerID)
+	{
+		GameObject point = Instantiate(scorePrefab, transform.position, Quaternion.identity) as GameObject;
+		point.transform.SetParent(scoreGrids[playerID].transform);
+
+		if (playerID == 0)
+        {
+			p1Score++;
+        }
+        else
+        {
+			p2Score++;
         }
 	}
 
@@ -169,30 +189,54 @@ public class LevelManager : MonoBehaviour
     {
 		bool retVal = false;
 
-		for (int i = 0; i < 2; i++)
+		if (p1Score >= rounds || p2Score >= rounds)
 		{
-			/*
-			if (players[i].score >= rounds)
+			Debug.Log("check if rounds reached");
+
+			if (p1Score >= rounds)
 			{
-				retVal = true;
-				break;
+				Debug.Log("check if rounds reached for p1");
+				p1Win = true;
 			}
-			*/
+			else
+			{
+				Debug.Log("check if rounds reached for p2");
+				p2Win = true;
+			}
+
+			retVal = true;
 		}
 
 		return retVal;
     }
 
+
 	IEnumerator EnableControl()
     {
 		
 		announcerText.gameObject.SetActive(true);
-		
-        announcerText.GetComponent<TMP_Text>().text = "Round " + currentRound;
+		timerText.gameObject.SetActive(true);
+
+		announcerText.GetComponent<TMP_Text>().text = "Round " + currentRound;
 		announcerText.GetComponent<TMP_Text>().color = Color.white;
 		yield return oneSec;
+		announcerText.GetComponent<TMP_Text>().text = "Get Ready!";
+		announcerText.GetComponent<TMP_Text>().color = Color.cyan;
 		yield return oneSec;
-		yield return new WaitForSeconds(2);
+		announcerText.GetComponent<TMP_Text>().text = "Blow your DEFENSE!";
+		announcerText.GetComponent<TMP_Text>().color = Color.blue;
+
+		// Allow players to blow bubbles for defense
+		players[0].GetComponent<PlayerMovement>().canBlow = true;
+		players[0].GetComponent<PlayerMovement>().canMove = true;
+
+		players[1].GetComponent<PlayerMovement>().canBlow = true;
+		players[1].GetComponent<PlayerMovement>().canMove = true;
+
+		// Start setup time
+		countdown = true;
+		yield return new WaitForSeconds(setupTime);
+		yield return oneSec;
 
 		// Change UI text for each second that passes
 		announcerText.GetComponent<TMP_Text>().text = "3";
@@ -204,24 +248,24 @@ public class LevelManager : MonoBehaviour
 		announcerText.GetComponent<TMP_Text>().text = "1";
 		announcerText.GetComponent<TMP_Text>().color = Color.red;
 		yield return oneSec;
-		announcerText.GetComponent<TMP_Text>().text = "FIGHT!";
+		announcerText.GetComponent<TMP_Text>().text = "SLING!";
 		announcerText.GetComponent<TMP_Text>().color = Color.red;
 
         /*
 		 * ENABLER PLAYER CONTROL HERE
 		 * ih.enabled = true;
 		 */
-        players[0].GetComponent<PlayerMovement>().canMove = true;
-        players[0].GetComponent<PlayerMovement>().canBlow = true;
+        // players[0].GetComponent<PlayerMovement>().canMove = true;
+        // players[0].GetComponent<PlayerMovement>().canBlow = true;
         players[0].GetComponent<PlayerMovement>().canShoot = true;
 
-        players[1].GetComponent<PlayerMovement>().canMove = true;
-        players[1].GetComponent<PlayerMovement>().canBlow = true;
+        // players[1].GetComponent<PlayerMovement>().canMove = true;
+        // players[1].GetComponent<PlayerMovement>().canBlow = true;
         players[1].GetComponent<PlayerMovement>().canShoot = true;
 
         yield return oneSec;
 		announcerText.gameObject.SetActive(false);
-		countdown = true;
+		// countdown = true;
 	}
 
 }
