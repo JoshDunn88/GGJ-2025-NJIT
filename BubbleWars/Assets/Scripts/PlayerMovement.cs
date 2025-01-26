@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
+        gameObject.SetActive(false);
         if (playerNumber == 1) 
         {
             //p2 won

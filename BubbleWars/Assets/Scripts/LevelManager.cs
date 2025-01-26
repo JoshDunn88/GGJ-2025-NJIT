@@ -243,8 +243,12 @@ public class LevelManager : MonoBehaviour
 		announcerText.GetComponent<TMP_Text>().text = "Blow your DEFENSE!";
 		announcerText.GetComponent<TMP_Text>().color = Color.blue;
 
-		// Allow players to blow bubbles for defense
-		players[0].GetComponent<PlayerMovement>().canBlow = true;
+        //Resurrect players
+        players[0].SetActive(true);
+        players[1].SetActive(true);
+
+        // Allow players to blow bubbles for defense
+        players[0].GetComponent<PlayerMovement>().canBlow = true;
 		players[0].GetComponent<PlayerMovement>().canMove = true;
 
 		players[1].GetComponent<PlayerMovement>().canBlow = true;

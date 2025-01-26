@@ -161,4 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0984d34e2f608794f8a45c08a0f64188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timetolive: 15
+  windController: {fileID: 0}
+  timetolive: 100
+  blown: 0
