@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-	public GameObject[] scoreGrids;
-	public GameObject scorePrefab;
-
 	public GameObject gamePanel;
 	public GameObject menuPanel;
-	public GameObject pauseMenuScreen;
+	public GameObject pauseMenuPanel;
+	public GameObject winnerPanel;
+
+	public GameObject winnerText;
 
 	public LevelManager level;
 
@@ -50,7 +51,26 @@ public class GameManager : MonoBehaviour
 		menuPanel.SetActive(true);
 		gamePanel.SetActive(false);
 
+		winnerPanel.SetActive(false);
+
 		NewInstance();
+	}
+
+	public void GameWin()
+    {
+		Debug.Log("check if game over");
+
+		winnerPanel.SetActive(true);
+
+        if (level.p1Win)
+        {
+			winnerText.GetComponent<TMP_Text>().text = "Player 1 WINS!";
+		}
+        else if(level.p2Win)
+        {
+			winnerText.GetComponent<TMP_Text>().text = "Player 2 WINS!";
+		}
+
 	}
 
 	// Pauses the game; activates pause panel
@@ -59,7 +79,7 @@ public class GameManager : MonoBehaviour
         
         Time.timeScale = 0f;
 
-		pauseMenuScreen.SetActive(true);                                    // Activate Pause Panel
+		pauseMenuPanel.SetActive(true); // Activate Pause Panel
 
 		Debug.Log("Game is paused");
 
@@ -68,8 +88,8 @@ public class GameManager : MonoBehaviour
 	// Resumes the game; deactivates pause panel
 	public void ResumeGame()
 	{
-		
-		pauseMenuScreen.SetActive(false);                                   // Deactivate pause panel
+
+		pauseMenuPanel.SetActive(false); // Deactivate pause panel
 
 		Time.timeScale = 1f;
 
@@ -81,13 +101,6 @@ public class GameManager : MonoBehaviour
     {
 		Application.Quit();
 		Debug.Log("Application is exiting");
-	}
-
-	// Add score indicator to the scoring player
-    public void AddScore(int player)
-	{
-		GameObject point = Instantiate(scorePrefab, transform.position, Quaternion.identity) as GameObject;
-		point.transform.SetParent(scoreGrids[player].transform);
 	}
 
     private void Update()
