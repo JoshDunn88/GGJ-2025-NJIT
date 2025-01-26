@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class BubbleController : MonoBehaviour
 {
+    public WindController windController;
     public float timetolive;
+
+    public bool blown;
     private float birthtime;
     private float deathtime;
 
     // Start is called before the first frame update
     void Start()
     {
+        blown = false;
         birthtime = Time.time;
         deathtime = birthtime + timetolive;
     }
@@ -24,6 +28,11 @@ public class BubbleController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (blown)
+            GetComponent<Rigidbody2D>().velocity += windController.GetComponent<WindController>().getWindVector();
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         //6 is arena walls
@@ -31,5 +40,12 @@ public class BubbleController : MonoBehaviour
         {
             if (gameObject) Destroy(gameObject);
         }
+
+        /*optional make players pop bubbles
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            if (gameObject) Destroy(gameObject);
+        }
+        */
     }
 }

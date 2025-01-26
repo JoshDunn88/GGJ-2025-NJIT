@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public GameManager gm;
+    public WindController wc;
     public int playerNumber;
     public GameObject projectile;
     public GameObject bubbile;
@@ -54,9 +55,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void ChargeBubbleStart()
     {
-        Vector3 bubblePosition = transform.position + transform.right * 0.7f;
+        Vector3 bubblePosition = transform.position + transform.right * 1f;
         bubblePosition.z = 0;
         currentBubble = Instantiate(bubbile, bubblePosition, transform.rotation);
+        currentBubble.GetComponent<BubbleController>().windController = wc;
         chargeStart = Time.time;
         chargin = true;
     }
@@ -95,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
     {
         lastShot = Time.time;
         currentBubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
+        currentBubble.GetComponent<BubbleController>().blown = true;
         currentBubble = null;
     }
 
