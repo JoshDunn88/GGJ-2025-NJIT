@@ -183,6 +183,7 @@ public class LevelManager : MonoBehaviour
         {
 			p2Score++;
         }
+
 	}
 
 	bool isMatchOver()
@@ -198,11 +199,18 @@ public class LevelManager : MonoBehaviour
 				Debug.Log("check if rounds reached for p1");
 				p1Win = true;
 			}
-			else
+			else if (p2Score >= rounds)
 			{
 				Debug.Log("check if rounds reached for p2");
 				p2Win = true;
 			}
+
+			int totalScore = p1Score + p2Score;
+
+			ResetScore(totalScore);
+
+			p1Score = 0;
+			p2Score = 0;
 
 			retVal = true;
 		}
@@ -210,6 +218,16 @@ public class LevelManager : MonoBehaviour
 		return retVal;
     }
 
+	void ResetScore(int totalScore)
+    {
+		Debug.Log("Total score to remove: " + totalScore);
+		GameObject[] point = GameObject.FindGameObjectsWithTag("Score");
+
+		for (int i = 0; i < totalScore; i++)
+        {
+			Destroy(point[i], 1.0f);
+		}
+	}
 
 	IEnumerator EnableControl()
     {
@@ -234,6 +252,7 @@ public class LevelManager : MonoBehaviour
 		players[1].GetComponent<PlayerMovement>().canMove = true;
 
 		// Start setup time
+		Debug.Log("Countdown initiated");
 		countdown = true;
 		yield return new WaitForSeconds(setupTime);
 		yield return oneSec;
@@ -265,7 +284,7 @@ public class LevelManager : MonoBehaviour
 
         yield return oneSec;
 		announcerText.gameObject.SetActive(false);
-		// countdown = true;
+		countdown = false;
 	}
 
 }

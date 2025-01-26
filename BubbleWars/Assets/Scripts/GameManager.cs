@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
 		menuPanel.SetActive(true);
 		gamePanel.SetActive(false);
 
+		winnerPanel.SetActive(false);
+
 		NewInstance();
 	}
 
