@@ -6112,13 +6112,13 @@ MonoBehaviour:
   projectile: {fileID: 7521824510019111563, guid: 1d4833e9630622b45b95fb0282bed8c8, type: 3}
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 5
-  projectileSpeed: 5
+  projectileSpeed: 9
   bubbleSpeed: 0.5
-  playerRotation: 10
+  playerRotation: 15
   fireRate: 0.5
   projectileChargeTime: 3
   bubbleChargeTime: 3
-  bubbleSizeIncrement: 0.8
+  bubbleSizeIncrement: 1
   canShoot: 0
   canMove: 0
   canBlow: 0
@@ -6917,13 +6917,13 @@ MonoBehaviour:
   projectile: {fileID: 7521824510019111563, guid: 1d4833e9630622b45b95fb0282bed8c8, type: 3}
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 5
-  projectileSpeed: 15
+  projectileSpeed: 9
   bubbleSpeed: 0.5
-  playerRotation: 10
+  playerRotation: 15
   fireRate: 0.5
   projectileChargeTime: 3
   bubbleChargeTime: 3
-  bubbleSizeIncrement: 0.8
+  bubbleSizeIncrement: 1
   canShoot: 0
   canMove: 0
   canBlow: 0
@@ -6988,7 +6988,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.7
+  m_Radius: 0.71
 --- !u!212 &1630403961
 SpriteRenderer:
   m_ObjectHideFlags: 0
