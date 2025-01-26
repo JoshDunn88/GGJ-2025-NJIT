@@ -9,12 +9,12 @@ public class LevelManager : MonoBehaviour
 	public Transform[] spawnPositions; // Player spawn points 
 	public GameObject[] players;
 
-	public int rounds = 3; // Default rounds to 3.
+	public int rounds; // Default rounds to 1.
 	int currentRound = 1; // Start current round at 1.
 
 	// Countdown vaiables
 	public bool countdown;
-	public int setupTime;
+	public int setupTime; // Default time to 5sec.
 	int currentTimer;
 	float internalTimer;
 
@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
 
 	public int p1Score, p2Score;
 	public bool p1Win, p2Win;
+	public bool rndSet, timeSet = false;
 
 	public GameObject announcerText;
 	public GameObject timerText;
@@ -39,40 +40,28 @@ public class LevelManager : MonoBehaviour
 
 	public void SetRounds(int roundAmt)
     {
-		switch (roundAmt)
-		{
-			case 1:
-				rounds = 1;
-				break;
-			case 2:
-				rounds = 2;
-				break;
-			case 3:
-				rounds = 3;
-				break;
-			default:
-				rounds = 1;
-				break;
-		}
+        rounds = roundAmt switch
+        {
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            _ => 1,
+        };
+        rndSet = true;
+
 	}
 
 	public void SetTimer(int time)
     {
-		switch (time)
-		{
-			case 5:
-				setupTime = 5;
-				break;
-			case 10:
-				setupTime = 10;
-				break;
-			case 15:
-				setupTime = 15;
-				break;
-			default:
-				setupTime = 5;
-				break;
-		}
+        setupTime = time switch
+        {
+            5 => 5,
+            10 => 10,
+            15 => 15,
+            _ => 5,
+        };
+        timeSet = true;
+
 	}
 
 	public void PlayGame()
@@ -80,8 +69,18 @@ public class LevelManager : MonoBehaviour
 		// Initiate the WaitForSeconds
 		oneSec = new WaitForSeconds(1);
 
+		if (rndSet == false)
+        {
+			rounds = 1;
+		}
+
+		if (timeSet == false)
+        {
+			setupTime = 5;
+		}
+
 		StartCoroutine(nameof(InitRound));
-		//announcerText.gameObject.SetActive(true); was false
+
 	}
 
 	void HandleRoundTimer()
@@ -98,14 +97,14 @@ public class LevelManager : MonoBehaviour
 
 		if (currentTimer <= 0)
         {
-			timerText.gameObject.SetActive(false);
+			timerText.SetActive(false);
 			countdown = false;
         }
     }
 
 	public void EndRound()
     {
-		announcerText.gameObject.SetActive(true);
+		announcerText.SetActive(true);
 		announcerText.GetComponent<TMP_Text>().text = "POPPED!";
 		announcerText.GetComponent<TMP_Text>().color = Color.red;
 
@@ -153,10 +152,11 @@ public class LevelManager : MonoBehaviour
 		yield return oneSec;
 		yield return oneSec;
 
-		bool matchOver = isMatchOver();
+		bool matchOver = IsMatchOver();
 
 		if (!matchOver)
         {
+			currentRound++;
 			StartCoroutine("InitRound");
         }
         else
@@ -165,7 +165,7 @@ public class LevelManager : MonoBehaviour
 			gm.GameWin();
 		}
 
-		currentRound++;
+		// currentRound++;
 	}
 
 	// Add score indicator to the scoring player
@@ -185,7 +185,7 @@ public class LevelManager : MonoBehaviour
 
 	}
 
-	bool isMatchOver()
+	bool IsMatchOver()
     {
 		bool retVal = false;
 
@@ -231,8 +231,8 @@ public class LevelManager : MonoBehaviour
 	IEnumerator EnableControl()
     {
 		
-		announcerText.gameObject.SetActive(true);
-		timerText.gameObject.SetActive(true);
+		announcerText.SetActive(true);
+		timerText.SetActive(true);
 
 		announcerText.GetComponent<TMP_Text>().text = "Round " + currentRound;
 		announcerText.GetComponent<TMP_Text>().color = Color.white;
@@ -278,7 +278,7 @@ public class LevelManager : MonoBehaviour
         players[1].GetComponent<PlayerMovement>().canShoot = true;
 
         yield return oneSec;
-		announcerText.gameObject.SetActive(false);
+		announcerText.SetActive(false);
 		countdown = false; // Reset timer status
 	}
 
