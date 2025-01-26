@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         
         Time.timeScale = 0f;
 
-		pauseMenuPanel.SetActive(true);                                    // Activate Pause Panel
+		pauseMenuPanel.SetActive(true); // Activate Pause Panel
 
 		Debug.Log("Game is paused");
 
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
 	public void ResumeGame()
 	{
 
-		pauseMenuPanel.SetActive(false);                                   // Deactivate pause panel
+		pauseMenuPanel.SetActive(false); // Deactivate pause panel
 
 		Time.timeScale = 1f;
 

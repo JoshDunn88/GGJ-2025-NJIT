@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
 				rounds = 3;
 				break;
 			default:
-				rounds = 2;
+				rounds = 1;
 				break;
 		}
 	}
@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour
 				setupTime = 15;
 				break;
 			default:
-				setupTime = 10;
+				setupTime = 5;
 				break;
 		}
 	}
@@ -98,7 +98,6 @@ public class LevelManager : MonoBehaviour
 
 		if (currentTimer <= 0)
         {
-			// EndRound(true);
 			timerText.gameObject.SetActive(false);
 			countdown = false;
         }
@@ -270,21 +269,13 @@ public class LevelManager : MonoBehaviour
 		announcerText.GetComponent<TMP_Text>().text = "SLING!";
 		announcerText.GetComponent<TMP_Text>().color = Color.red;
 
-        /*
-		 * ENABLER PLAYER CONTROL HERE
-		 * ih.enabled = true;
-		 */
-        // players[0].GetComponent<PlayerMovement>().canMove = true;
-        // players[0].GetComponent<PlayerMovement>().canBlow = true;
         players[0].GetComponent<PlayerMovement>().canShoot = true;
 
-        // players[1].GetComponent<PlayerMovement>().canMove = true;
-        // players[1].GetComponent<PlayerMovement>().canBlow = true;
         players[1].GetComponent<PlayerMovement>().canShoot = true;
 
         yield return oneSec;
 		announcerText.gameObject.SetActive(false);
-		countdown = false;
+		countdown = false; // Reset timer status
 	}
 
 }
