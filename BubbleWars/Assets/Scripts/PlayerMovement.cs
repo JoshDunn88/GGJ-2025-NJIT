@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
     private void Shoot()
     {
         lastShot = Time.time;
-        Vector3 projectilePosition = transform.position + transform.right * 0.7f;
+        Vector3 projectilePosition = transform.position + transform.right * 1f;
         projectilePosition.z = 0;
         GameObject pebble = Instantiate(projectile, projectilePosition, transform.rotation);
         pebble.GetComponent<Rigidbody2D>().velocity = transform.right * projectileSpeed;
