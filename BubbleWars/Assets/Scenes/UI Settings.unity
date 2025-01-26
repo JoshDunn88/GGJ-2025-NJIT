@@ -5218,8 +5218,8 @@ MonoBehaviour:
   playerNumber: 1
   projectile: {fileID: 7521824510019111563, guid: 1d4833e9630622b45b95fb0282bed8c8, type: 3}
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
-  playerSpeed: 8
-  projectileSpeed: 5
+  playerSpeed: 5
+  projectileSpeed: 15
   bubbleSpeed: 0.3
   playerRotation: 10
   fireRate: 0.5
@@ -6002,8 +6002,8 @@ MonoBehaviour:
   playerNumber: 2
   projectile: {fileID: 7521824510019111563, guid: 1d4833e9630622b45b95fb0282bed8c8, type: 3}
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
-  playerSpeed: 8
-  projectileSpeed: 5
+  playerSpeed: 5
+  projectileSpeed: 15
   bubbleSpeed: 0.3
   playerRotation: 10
   fireRate: 0.5
