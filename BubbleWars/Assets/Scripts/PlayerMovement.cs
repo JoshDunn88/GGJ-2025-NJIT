@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
         currentBubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
         currentBubble.GetComponent<BubbleController>().blown = true;
         currentBubble = null;
-        tool.GetComponent<SpriteRenderer>().sprite = sling;
+        //tool.GetComponent<SpriteRenderer>().sprite = sling;
     }
 
     
