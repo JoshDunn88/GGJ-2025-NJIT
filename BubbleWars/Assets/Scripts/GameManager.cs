@@ -51,9 +51,10 @@ public class GameManager : MonoBehaviour
 		menuPanel.SetActive(true);
 		gamePanel.SetActive(false);
 
-		StopAllCoroutines();
+		level.StopAllCoroutines();
 		level.countdown = false;
-		ResumeGame();
+        isGamePaused = false;
+        ResumeGame();
 
 		winnerPanel.SetActive(false);
 
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !menuPanel.activeSelf)
         {
             if (isGamePaused)
             {
