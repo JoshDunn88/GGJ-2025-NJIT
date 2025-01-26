@@ -940,7 +940,7 @@ GameObject:
   - component: {fileID: 119911503}
   - component: {fileID: 119911502}
   m_Layer: 6
-  m_Name: Square (3)
+  m_Name: East Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -955,8 +955,8 @@ Transform:
   m_GameObject: {fileID: 119911500}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 10.7, y: -0.137, z: 9.94182}
-  m_LocalScale: {x: 11.917155, y: 1.1276, z: 1}
+  m_LocalPosition: {x: 9.1545, y: -0.137, z: 9.94182}
+  m_LocalScale: {x: 11.917155, y: 1.2187101, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1780057103}
@@ -1048,7 +1048,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.027450982, b: 0.04705883, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1256,7 +1256,7 @@ GameObject:
   - component: {fileID: 324058351}
   - component: {fileID: 324058350}
   m_Layer: 6
-  m_Name: Square (1)
+  m_Name: South Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1519,7 +1519,7 @@ GameObject:
   - component: {fileID: 348906908}
   - component: {fileID: 348906909}
   m_Layer: 6
-  m_Name: Square (2)
+  m_Name: West Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1534,8 +1534,8 @@ Transform:
   m_GameObject: {fileID: 348906906}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -12.8, y: -0.137, z: 9.94182}
-  m_LocalScale: {x: 11.917155, y: 1.1276, z: 1}
+  m_LocalPosition: {x: -11.2708, y: -0.137, z: 9.94182}
+  m_LocalScale: {x: 11.95, y: 1.1858969, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1780057103}
@@ -1582,7 +1582,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3212,6 +3212,8 @@ MonoBehaviour:
   p2Score: 0
   p1Win: 0
   p2Win: 0
+  rndSet: 0
+  timeSet: 0
   announcerText: {fileID: 1634224952}
   timerText: {fileID: 695033062}
   scoreGrids:
@@ -6289,8 +6291,8 @@ MonoBehaviour:
   shotFireRate: 1
   bubbleFireRate: 0.4
   projectileChargeTime: 3
-  bubbleChargeTime: 2.6
-  bubbleSizeIncrement: 1.3
+  bubbleChargeTime: 2.1
+  bubbleSizeIncrement: 1.7
   canShoot: 0
   canMove: 0
   canBlow: 0
@@ -7099,8 +7101,8 @@ MonoBehaviour:
   shotFireRate: 0
   bubbleFireRate: 0
   projectileChargeTime: 3
-  bubbleChargeTime: 2.6
-  bubbleSizeIncrement: 1.3
+  bubbleChargeTime: 2.1
+  bubbleSizeIncrement: 1.7
   canShoot: 0
   canMove: 0
   canBlow: 0
@@ -7803,7 +7805,7 @@ GameObject:
   - component: {fileID: 1861469072}
   - component: {fileID: 1861469073}
   m_Layer: 6
-  m_Name: Square
+  m_Name: North Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

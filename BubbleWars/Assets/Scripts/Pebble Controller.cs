@@ -27,6 +27,10 @@ public class PebbleController : MonoBehaviour
         //}
     }
 
+    void FixedUpdate()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + 10);
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         print("trigger triggered");

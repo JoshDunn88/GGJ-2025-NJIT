@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ChargeBubbleStart()
     {
-        Vector3 bubblePosition = transform.position + transform.right * 1.2f;
+        Vector3 bubblePosition = tool.transform.position;
         bubblePosition.z = 0;
         currentBubble = Instantiate(bubbile, bubblePosition, transform.rotation);
         currentBubble.GetComponent<BubbleController>().windController = wc;
@@ -82,7 +82,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        Vector3 bubblePosition = transform.position + transform.right * 1.2f;
+        //move bubble to wand
+        Vector3 bubblePosition = tool.transform.position + transform.right * (0.45f * currentBubble.transform.localScale.x/bubbleSizeIncrement);
         bubblePosition.z = 0;
         currentBubble.transform.position = bubblePosition;
         //enforce max bubble size
@@ -90,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float sizeIncrement = bubbleSizeIncrement / 100;
             Vector3 sizeVector = new Vector3(sizeIncrement, sizeIncrement, 0f);
-            currentBubble.transform.localScale += sizeVector;
+            currentBubble.transform.localScale += sizeVector;   
 
         }
             
