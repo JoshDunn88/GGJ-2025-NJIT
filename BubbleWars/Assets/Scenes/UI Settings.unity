@@ -6113,12 +6113,13 @@ MonoBehaviour:
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 5
   projectileSpeed: 9
-  bubbleSpeed: 0.5
+  bubbleSpeed: 0.2
   playerRotation: 15
-  fireRate: 0.5
+  shotFireRate: 1
+  bubbleFireRate: 0.4
   projectileChargeTime: 3
-  bubbleChargeTime: 3
-  bubbleSizeIncrement: 1
+  bubbleChargeTime: 2.6
+  bubbleSizeIncrement: 1.3
   canShoot: 0
   canMove: 0
   canBlow: 0
@@ -6918,12 +6919,13 @@ MonoBehaviour:
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 5
   projectileSpeed: 9
-  bubbleSpeed: 0.5
+  bubbleSpeed: 0.2
   playerRotation: 15
-  fireRate: 0.5
+  shotFireRate: 0
+  bubbleFireRate: 0
   projectileChargeTime: 3
-  bubbleChargeTime: 3
-  bubbleSizeIncrement: 1
+  bubbleChargeTime: 2.6
+  bubbleSizeIncrement: 1.3
   canShoot: 0
   canMove: 0
   canBlow: 0

@@ -39,9 +39,10 @@ public class PebbleController : MonoBehaviour
         //7 is bubble layer
         if (other.gameObject.layer == LayerMask.NameToLayer("Bubble"))
         {
+            
             if (other.gameObject) Destroy(other.gameObject);
-            //if no piercing powerup
-            if (gameObject) Destroy(gameObject);
+            //if no piercing powerup, remove second hallf to allow charging bubble parries
+            if (gameObject && other.gameObject.GetComponent<BubbleController>().blown) Destroy(gameObject);
         }
 
         //might not need 2 ifs here

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public float projectileSpeed;
     public float bubbleSpeed;
     public float playerRotation;
-    public float fireRate;
+    public float shotFireRate;
+    public float bubbleFireRate;
     public float projectileChargeTime;
     public float bubbleChargeTime;
     public float bubbleSizeIncrement;
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject currentBubble;
     private GameObject currentPebble;
     private float lastShot;
+    private float lastBubble;
     private float chargeStart;
 
     private bool chargin;
@@ -71,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         if (!currentBubble)
         {
             chargin = false;
-            lastShot = Time.time;
+            lastBubble = Time.time;
             return;
         }
 
@@ -98,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Blow()
     {
-        lastShot = Time.time;
+        lastBubble = Time.time;
         currentBubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
         currentBubble.GetComponent<BubbleController>().blown = true;
         currentBubble = null;
@@ -111,7 +114,8 @@ public class PlayerMovement : MonoBehaviour
         canShoot = false;
         canMove = false;
         canBlow = false;
-        lastShot = Time.time - fireRate;
+        lastShot = Time.time - shotFireRate;
+        lastBubble = Time.time - bubbleFireRate;
         rb = GetComponent<Rigidbody2D>();
         chargin = false;
     }
@@ -121,12 +125,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerNumber == 1)
         {
-            if (Input.GetKeyDown(KeyCode.V) && Time.time >= lastShot + fireRate && canShoot)
+            if (Input.GetKeyDown(KeyCode.V) && Time.time >= lastShot + shotFireRate && canShoot && !chargin)
             {
                 Shoot();
             }
 
-            if (Input.GetKeyDown(KeyCode.B) && Time.time >= lastShot + fireRate && canBlow)
+            if (Input.GetKeyDown(KeyCode.B) && Time.time >= lastBubble + bubbleFireRate && canBlow)
             {
                 ChargeBubbleStart();
             }
@@ -140,13 +144,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerNumber == 2)
         {
-            if (Input.GetKeyDown(KeyCode.RightBracket) && Time.time >= lastShot + fireRate && canShoot)
+            if (Input.GetKeyDown(KeyCode.RightBracket) && Time.time >= lastShot + shotFireRate && canShoot && !chargin)
             {
                 Shoot();
             }
 
 
-            if (Input.GetKeyDown(KeyCode.Backslash) && Time.time >= lastShot + fireRate && canBlow)
+            if (Input.GetKeyDown(KeyCode.Backslash) && Time.time >= lastBubble + bubbleFireRate && canBlow)
             {
                 ChargeBubbleStart();
             }
