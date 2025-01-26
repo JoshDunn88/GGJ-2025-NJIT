@@ -4908,8 +4908,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d807cc00631faa94299d7a55b0b0ee3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeFrequency: 4
-  maxSpeed: 10
+  windArrow: {fileID: 1929108111}
+  windText: {fileID: 1942512754}
+  changeFrequency: 9
+  maxSpeed: 4
+  minSpeed: 0.4
   direction: 0
   magnitude: 0
 --- !u!4 &1489763259
@@ -5217,9 +5220,9 @@ MonoBehaviour:
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 8
   projectileSpeed: 5
-  bubbleSpeed: 1
+  bubbleSpeed: 0.3
   playerRotation: 10
-  fireRate: 1
+  fireRate: 0.5
   projectileChargeTime: 3
   bubbleChargeTime: 3
   bubbleSizeIncrement: 0.8
@@ -6001,9 +6004,9 @@ MonoBehaviour:
   bubbile: {fileID: 8306282724328262510, guid: a18364ce823d13a4fad5d9a0a958a832, type: 3}
   playerSpeed: 8
   projectileSpeed: 5
-  bubbleSpeed: 1
+  bubbleSpeed: 0.3
   playerRotation: 10
-  fireRate: 1
+  fireRate: 0.5
   projectileChargeTime: 3
   bubbleChargeTime: 3
   bubbleSizeIncrement: 0.8
@@ -6602,7 +6605,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861469070}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.092792, y: 5.2124524, z: 9.94182}
   m_LocalScale: {x: 21.66795, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6999,7 +7002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 63e938a82b620d242aef8ad3b4325bff, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
