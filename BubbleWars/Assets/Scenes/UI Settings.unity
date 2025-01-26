@@ -1271,7 +1271,7 @@ Transform:
   m_GameObject: {fileID: 324058348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1867, y: -5.65, z: 9.94182}
+  m_LocalPosition: {x: -1.1867, y: -6.07, z: 9.94182}
   m_LocalScale: {x: 22.560581, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2738,7 +2738,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.3955307
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2763,8 +2763,8 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10.39}
+  m_LocalScale: {x: 0, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3395,8 +3395,8 @@ Transform:
   m_GameObject: {fileID: 730580114}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0.409, z: -2}
-  m_LocalScale: {x: 1.15, y: 1.31, z: 1}
+  m_LocalPosition: {x: -0.03, y: 0.409, z: -2}
+  m_LocalScale: {x: 1.21, y: 1.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 848515950}
@@ -3665,7 +3665,7 @@ Transform:
   m_GameObject: {fileID: 795092289}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.37, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6289,7 +6289,7 @@ MonoBehaviour:
   bubbleSpeed: 0.2
   playerRotation: 15
   shotFireRate: 1
-  bubbleFireRate: 0.4
+  bubbleFireRate: 0.8
   projectileChargeTime: 3
   bubbleChargeTime: 2.1
   bubbleSizeIncrement: 1.7
@@ -7098,8 +7098,8 @@ MonoBehaviour:
   projectileSpeed: 9
   bubbleSpeed: 0.2
   playerRotation: 15
-  shotFireRate: 0
-  bubbleFireRate: 0
+  shotFireRate: 1
+  bubbleFireRate: 0.8
   projectileChargeTime: 3
   bubbleChargeTime: 2.1
   bubbleSizeIncrement: 1.7
@@ -7398,7 +7398,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 3}
+  m_LocalScale: {x: 1.02, y: 1.02, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 848515950}
@@ -7820,7 +7820,7 @@ Transform:
   m_GameObject: {fileID: 1861469070}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1867, y: 5.44, z: 9.94182}
+  m_LocalPosition: {x: -1.1867, y: 5.83, z: 9.94182}
   m_LocalScale: {x: 22.560581, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7949,7 +7949,7 @@ Transform:
   m_GameObject: {fileID: 1890694445}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.114, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
