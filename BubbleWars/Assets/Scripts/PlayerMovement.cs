@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public int playerNumber;
     public GameObject projectile;
     public GameObject bubbile;
+    public GameObject tool;
+    public Sprite sling;
+    public Sprite wand;
     public float playerSpeed;
     public float projectileSpeed;
     public float bubbleSpeed;
@@ -61,12 +64,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void ChargeBubbleStart()
     {
-        Vector3 bubblePosition = transform.position + transform.right * 1f;
+        Vector3 bubblePosition = transform.position + transform.right * 1.2f;
         bubblePosition.z = 0;
         currentBubble = Instantiate(bubbile, bubblePosition, transform.rotation);
         currentBubble.GetComponent<BubbleController>().windController = wc;
         chargeStart = Time.time;
         chargin = true;
+        tool.GetComponent<SpriteRenderer>().sprite = wand;
     }
     private void ChargeBubble()
     {
@@ -78,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        Vector3 bubblePosition = transform.position + transform.right * 0.7f;
+        Vector3 bubblePosition = transform.position + transform.right * 1.2f;
         bubblePosition.z = 0;
         currentBubble.transform.position = bubblePosition;
         //enforce max bubble size
@@ -98,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
         projectilePosition.z = 0;
         GameObject pebble = Instantiate(projectile, projectilePosition, transform.rotation);
         pebble.GetComponent<Rigidbody2D>().velocity = transform.right * projectileSpeed;
+        tool.GetComponent<SpriteRenderer>().sprite = sling;
     }
     private void Blow()
     {
@@ -105,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
         currentBubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
         currentBubble.GetComponent<BubbleController>().blown = true;
         currentBubble = null;
+        tool.GetComponent<SpriteRenderer>().sprite = sling;
     }
 
     
