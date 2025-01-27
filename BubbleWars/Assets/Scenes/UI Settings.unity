@@ -9697,7 +9697,7 @@ MonoBehaviour:
   sling: {fileID: 21300000, guid: a9b3c37bc41bafb41acb35993ceb2ef9, type: 3}
   wand: {fileID: 21300000, guid: 9618c5fa25124cd47bb42985cd7a2b01, type: 3}
   playerSpeed: 5
-  projectileSpeed: 9
+  projectileSpeed: 15
   bubbleSpeed: 0.2
   playerRotation: 15
   shotFireRate: 1
@@ -10684,7 +10684,7 @@ MonoBehaviour:
   sling: {fileID: 21300000, guid: a9b3c37bc41bafb41acb35993ceb2ef9, type: 3}
   wand: {fileID: 21300000, guid: 9618c5fa25124cd47bb42985cd7a2b01, type: 3}
   playerSpeed: 5
-  projectileSpeed: 9
+  projectileSpeed: 15
   bubbleSpeed: 0.2
   playerRotation: 15
   shotFireRate: 1

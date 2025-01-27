@@ -36,8 +36,11 @@ public class PlayerMovement : MonoBehaviour
     private float lastShot;
     private float lastBubble;
     private float chargeStart;
-
     private bool chargin;
+
+    private float lastStep;
+    private float stepFrequency = 0.5f;
+    private float footstepVolume = 0.08f;
 
     SoundManager sm;
 
@@ -137,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
         lastBubble = Time.time - bubbleFireRate;
         rb = GetComponent<Rigidbody2D>();
         chargin = false;
+        lastStep = Time.time;
     }
 
     // Update is called once per frame
@@ -198,12 +202,21 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKey(KeyCode.W))
                 {
                     newPosition.y = transform.position.y + movement;
-                    // sm.PlaySFX(sm.footsteps);
+                    if (Time.time > lastStep + stepFrequency)
+                    {
+                        sm.PlaySFX(sm.footsteps, footstepVolume);
+                        lastStep = Time.time;
+                    }
+                       
                 }
                 if (Input.GetKey(KeyCode.S))
                 {
                     newPosition.y = transform.position.y - movement;
-                    // sm.PlaySFX(sm.footsteps);
+                    if (Time.time > lastStep + stepFrequency)
+                    {
+                        sm.PlaySFX(sm.footsteps, footstepVolume);
+                        lastStep = Time.time;
+                    }
                 }
 
                 if (Input.GetKey(KeyCode.A))
@@ -239,12 +252,20 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
                     newPosition.y = transform.position.y + movement;
-                    sm.PlaySFX(sm.footsteps);
+                    if (Time.time > lastStep + stepFrequency)
+                    {
+                        sm.PlaySFX(sm.footsteps, footstepVolume);
+                        lastStep = Time.time;
+                    }
                 }
                 if (Input.GetKey(KeyCode.DownArrow))
                 {
                     newPosition.y = transform.position.y - movement;
-                    sm.PlaySFX(sm.footsteps);
+                    if (Time.time > lastStep + stepFrequency)
+                    {
+                        sm.PlaySFX(sm.footsteps, footstepVolume);
+                        lastStep = Time.time;
+                    }
                 }
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
