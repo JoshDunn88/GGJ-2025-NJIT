@@ -9707,7 +9707,8 @@ MonoBehaviour:
   bubbleSizeIncrement: 2.3
   canShoot: 0
   canMove: 0
-  canBlow: 1
+  canBlow: 0
+  fireDuration: 0.165
 --- !u!50 &1558184803
 Rigidbody2D:
   serializedVersion: 4
@@ -10695,6 +10696,7 @@ MonoBehaviour:
   canShoot: 0
   canMove: 0
   canBlow: 0
+  fireDuration: 0.165
 --- !u!50 &1630403959
 Rigidbody2D:
   serializedVersion: 4

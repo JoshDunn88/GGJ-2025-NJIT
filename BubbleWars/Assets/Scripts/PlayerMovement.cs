@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private float chargeStart;
     private bool chargin;
     private float fireInputTime;
-    private float fireDuration = 5f;
+    public float fireDuration;
 
     private float lastStep;
     private float stepFrequency = 0.5f;
@@ -150,52 +150,56 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerNumber == 1)
         {
-            if (Input.GetKeyDown(KeyCode.V) && canBlow && !chargin)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canBlow && !chargin)
             {
                 fireInputTime = Time.time;
+                Debug.Log("fire start");
             }
 
-            if (Input.GetKey(KeyCode.V) && Time.time >= fireInputTime + fireDuration && Time.time >= lastBubble + bubbleFireRate && canBlow)
+            if (Input.GetKey(KeyCode.LeftShift) && Time.time >= fireInputTime + fireDuration && Time.time >= lastBubble + bubbleFireRate && canBlow && !chargin)
             {
                 ChargeBubbleStart();
             }
 
-            if (Input.GetKeyUp(KeyCode.V) && canShoot && !chargin)
+            if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 if (canBlow && chargin)
                 {
                     chargin = false;
                     Blow();
                 }
-                else if (Time.time >= lastShot + shotFireRate)
+                else if (canShoot && Time.time >= lastShot + shotFireRate)
                 {
                     Shoot();
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.B) && chargin)
-            {
-                
-            }
         }
 
         if (playerNumber == 2)
         {
-            if (Input.GetKeyDown(KeyCode.RightBracket) && Time.time >= lastShot + shotFireRate && canShoot && !chargin)
+            if (Input.GetKeyDown(KeyCode.RightShift) && canBlow && !chargin)
             {
-                Shoot();
+                fireInputTime = Time.time;
+                Debug.Log("fire start");
             }
 
-
-            if (Input.GetKeyDown(KeyCode.Backslash) && Time.time >= lastBubble + bubbleFireRate && canBlow)
+            if (Input.GetKey(KeyCode.RightShift) && Time.time >= fireInputTime + fireDuration && Time.time >= lastBubble + bubbleFireRate && canBlow && !chargin)
             {
                 ChargeBubbleStart();
             }
-            
-            if (Input.GetKeyUp(KeyCode.Backslash) && chargin)
+
+            if (Input.GetKeyUp(KeyCode.RightShift))
             {
-                chargin = false;
-                Blow();
+                if (canBlow && chargin)
+                {
+                    chargin = false;
+                    Blow();
+                }
+                else if (canShoot && Time.time >= lastShot + shotFireRate)
+                {
+                    Shoot();
+                }
             }
         }
     }
@@ -242,7 +246,7 @@ public class PlayerMovement : MonoBehaviour
                     newRotation.z = newRotation.z - rotation;
                 }
 
-                if (Input.GetKey(KeyCode.V) && chargin)
+                if (Input.GetKey(KeyCode.LeftShift) && chargin)
                 {
                     ChargeBubble();
                 }
@@ -263,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (canMove)
             {
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKey(KeyCode.P))
                 {
                     newPosition.y = transform.position.y + movement;
                     if (Time.time > lastStep + stepFrequency)
@@ -272,7 +276,7 @@ public class PlayerMovement : MonoBehaviour
                         lastStep = Time.time;
                     }
                 }
-                if (Input.GetKey(KeyCode.DownArrow))
+                if (Input.GetKey(KeyCode.Semicolon))
                 {
                     newPosition.y = transform.position.y - movement;
                     if (Time.time > lastStep + stepFrequency)
@@ -281,16 +285,16 @@ public class PlayerMovement : MonoBehaviour
                         lastStep = Time.time;
                     }
                 }
-                if (Input.GetKey(KeyCode.LeftArrow))
+                if (Input.GetKey(KeyCode.L))
                 {
                     newRotation.z = newRotation.z + rotation;
                 }
-                if (Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKey(KeyCode.Quote))
                 {
                     newRotation.z = newRotation.z - rotation;
                 }
 
-                if (Input.GetKey(KeyCode.Backslash) && chargin)
+                if (Input.GetKey(KeyCode.RightShift) && chargin)
                 {
                     ChargeBubble();
                 }
