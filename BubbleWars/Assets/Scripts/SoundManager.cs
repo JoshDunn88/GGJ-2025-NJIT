@@ -51,8 +51,6 @@ public class SoundManager : MonoBehaviour
 
         UpdateButtonIcon();
         AudioListener.pause = muted;
-        // SetMusicVol();
-        // SetSFXVol();
     }
 
     public void OnButtonPress()

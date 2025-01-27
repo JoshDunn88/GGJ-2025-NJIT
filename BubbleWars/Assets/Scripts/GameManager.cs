@@ -109,6 +109,8 @@ public class GameManager : MonoBehaviour
     {
 		Application.Quit();
 		Debug.Log("Application is exiting");
+
+		PlayerPrefs.DeleteAll();
 	}
 
     private void Update()

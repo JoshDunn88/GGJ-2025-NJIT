@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
 	private void Awake()
 	{
 		sm = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+		
 	}
 
 	private void Update()
