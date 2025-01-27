@@ -122,4 +122,9 @@ public class SoundManager : MonoBehaviour
     {
         SFXSource.PlayOneShot(clip);
     }
+
+    public void PlaySFX(AudioClip clip, float scaledVolume)
+    {
+        SFXSource.PlayOneShot(clip, scaledVolume);
+    }
 }
