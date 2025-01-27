@@ -9703,11 +9703,11 @@ MonoBehaviour:
   shotFireRate: 1
   bubbleFireRate: 0.8
   projectileChargeTime: 3
-  bubbleChargeTime: 2.1
-  bubbleSizeIncrement: 1.7
+  bubbleChargeTime: 1.5
+  bubbleSizeIncrement: 2.3
   canShoot: 0
   canMove: 0
-  canBlow: 0
+  canBlow: 1
 --- !u!50 &1558184803
 Rigidbody2D:
   serializedVersion: 4
@@ -10690,8 +10690,8 @@ MonoBehaviour:
   shotFireRate: 1
   bubbleFireRate: 0.8
   projectileChargeTime: 3
-  bubbleChargeTime: 2.1
-  bubbleSizeIncrement: 1.7
+  bubbleChargeTime: 1.5
+  bubbleSizeIncrement: 2.3
   canShoot: 0
   canMove: 0
   canBlow: 0

@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     private void Shoot()
     {
         lastShot = Time.time;
-        Vector3 projectilePosition = transform.position + transform.right * 1f;
+        Vector3 projectilePosition = transform.position + transform.right;
         projectilePosition.z = 0;
         GameObject pebble = Instantiate(projectile, projectilePosition, transform.rotation);
         sm.PlaySFX(sm.slingshot);
