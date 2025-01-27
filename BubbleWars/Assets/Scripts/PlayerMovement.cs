@@ -39,14 +39,23 @@ public class PlayerMovement : MonoBehaviour
 
     private bool chargin;
 
+    SoundManager sm;
+
+    private void Awake()
+    {
+        sm = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
+
     public void Die()
     {
         gameObject.SetActive(false);
+        sm.PlaySFX(sm.death);
         if (playerNumber == 1) 
         {
             //p2 won
             gm.level.EndRound();
             gm.level.AddScore(1);
+            sm.PlaySFX(sm.score);
         }
 
         if (playerNumber == 2)
@@ -54,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
             //p1 won
             gm.level.EndRound();
             gm.level.AddScore(0);
+            sm.PlaySFX(sm.score);
         }
     }
 
@@ -102,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 projectilePosition = transform.position + transform.right * 1f;
         projectilePosition.z = 0;
         GameObject pebble = Instantiate(projectile, projectilePosition, transform.rotation);
+        sm.PlaySFX(sm.slingshot);
         pebble.GetComponent<Rigidbody2D>().velocity = transform.right * projectileSpeed;
         tool.GetComponent<SpriteRenderer>().sprite = sling;
     }
@@ -110,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         lastBubble = Time.time;
         currentBubble.GetComponent<Rigidbody2D>().velocity = transform.right * bubbleSpeed;
         currentBubble.GetComponent<BubbleController>().blown = true;
+        sm.PlaySFX(sm.bubbleCharge);
         currentBubble = null;
         //tool.GetComponent<SpriteRenderer>().sprite = sling;
     }
@@ -186,10 +198,12 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKey(KeyCode.W))
                 {
                     newPosition.y = transform.position.y + movement;
+                    // sm.PlaySFX(sm.footsteps);
                 }
                 if (Input.GetKey(KeyCode.S))
                 {
                     newPosition.y = transform.position.y - movement;
+                    // sm.PlaySFX(sm.footsteps);
                 }
 
                 if (Input.GetKey(KeyCode.A))
@@ -225,10 +239,12 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
                     newPosition.y = transform.position.y + movement;
+                    sm.PlaySFX(sm.footsteps);
                 }
                 if (Input.GetKey(KeyCode.DownArrow))
                 {
                     newPosition.y = transform.position.y - movement;
+                    sm.PlaySFX(sm.footsteps);
                 }
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {

@@ -8,10 +8,17 @@ public class PebbleController : MonoBehaviour
     public float timetolive;
     private float birthtime;
     private float deathtime;
+
+    SoundManager sm;
+
+    private void Awake()
+    {
+        sm = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-       
         birthtime = Time.time;
         deathtime = birthtime + timetolive;
     }
@@ -43,7 +50,7 @@ public class PebbleController : MonoBehaviour
         //7 is bubble layer
         if (other.gameObject.layer == LayerMask.NameToLayer("Bubble"))
         {
-            
+            sm.PlaySFX(sm.bubblePop);
             if (other.gameObject) Destroy(other.gameObject);
             //if no piercing powerup, remove second hallf to allow charging bubble parries
             if (gameObject && other.gameObject.GetComponent<BubbleController>().blown) Destroy(gameObject);

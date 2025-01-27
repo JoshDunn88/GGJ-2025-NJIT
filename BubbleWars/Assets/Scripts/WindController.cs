@@ -21,6 +21,8 @@ public class WindController : MonoBehaviour
     private float magnitudeChangeTime = 20;
     private float directionChangeTime = 20;
 
+    // SoundManager sm;
+
     public Vector2 getWindVector()
     {
         Vector2 wind = new Vector2 (0, 0);
@@ -36,6 +38,14 @@ public class WindController : MonoBehaviour
         Quaternion newRot = Quaternion.Euler(0f, 0f, direction-90);
         return newRot;
     }
+
+    /*
+    private void Awake()
+    {
+        sm = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
+    */
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,5 +72,6 @@ public class WindController : MonoBehaviour
     {
         direction += (targetDirection - direction) / directionChangeTime;
         magnitude += (targetMagnitude - magnitude) / magnitudeChangeTime;
+        // sm.PlaySFX(sm.wind);
     }
 }

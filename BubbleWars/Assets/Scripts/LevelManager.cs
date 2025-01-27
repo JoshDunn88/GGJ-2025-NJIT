@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
 	float internalTimer;
 
 	public GameManager gm;
+	SoundManager sm;
 
 	public int p1Score, p2Score;
 	public bool p1Win, p2Win;
@@ -29,6 +30,11 @@ public class LevelManager : MonoBehaviour
 
 	public GameObject[] scoreGrids;
 	public GameObject scorePrefab;
+
+	private void Awake()
+	{
+		sm = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+	}
 
 	private void Update()
     {

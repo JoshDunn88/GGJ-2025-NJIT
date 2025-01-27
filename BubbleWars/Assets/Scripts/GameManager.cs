@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	public GameObject winnerText;
 
 	public LevelManager level;
+	SoundManager sm;
 
 	public static GameManager Instance { get; private set; }
 
@@ -25,7 +26,9 @@ public class GameManager : MonoBehaviour
 			Debug.LogError("More than one GameManager instance!");
         }
 		Instance = this;
-    }
+
+		sm = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+	}
 
 	// Create new instance of GameManager
 	void NewInstance()
@@ -64,7 +67,7 @@ public class GameManager : MonoBehaviour
 	public void GameWin()
     {
 		Debug.Log("check if game over");
-
+		sm.PlaySFX(sm.win);
 		winnerPanel.SetActive(true);
 
         if (level.p1Win)

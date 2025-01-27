@@ -4,38 +4,55 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
+    [Header("----------- Audio Source ----------")]
+    [SerializeField] AudioSource SFXSource;
 
+    [Header("----------- Audio Clips ----------")]
+    public AudioClip bubbleCharge;
+    public AudioClip footsteps;
+    public AudioClip slingshot;
+    public AudioClip bubblePop;
+    public AudioClip wind;
+    public AudioClip score;
+    public AudioClip death;
+    public AudioClip win;
+    public AudioClip btnPop1;
+
+    [Header("----------- Audio UI ----------")]
     [SerializeField] Image soundOnIcon;
     [SerializeField] Image soundOffIcon;
     private bool muted = false;
 
     [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider SFXSlider;
 
     void Start()
     {
         if (!PlayerPrefs.HasKey("muted"))
         {
             PlayerPrefs.SetInt("muted", 0);
-            Load();
+            LoadToggle();
         }
         else
         {
-            Load();
+            LoadToggle();
         }
 
-        if (PlayerPrefs.HasKey("masterVolume"))
+        if (PlayerPrefs.HasKey("musicVolume"))
         {
             LoadVolume();
         }
         else
         {
-            SetVolume();
+            SetMusicVol();
+            SetSFXVol();
         }
 
         UpdateButtonIcon();
         AudioListener.pause = muted;
-        SetVolume();
+        // SetMusicVol();
+        // SetSFXVol();
     }
 
     public void OnButtonPress()
@@ -52,7 +69,7 @@ public class SoundManager : MonoBehaviour
             AudioListener.pause = false;
         }
 
-        Save();
+        SaveToggle();
         UpdateButtonIcon();
     }
 
@@ -70,27 +87,41 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private void Load()
+    private void LoadToggle()
     {
         muted = PlayerPrefs.GetInt("muted") == 1;
     }
 
-    private void Save()
+    private void SaveToggle()
     {
         PlayerPrefs.SetInt("muted", muted ? 1 : 0);
     }
 
-    public void SetVolume()
+    public void SetMusicVol()
     {
-        float volume = volumeSlider.value;
-        audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("masterVolume", volume);
+        float mvolume = musicSlider.value;
+        audioMixer.SetFloat("music", Mathf.Log10(mvolume) * 20);
+        PlayerPrefs.SetFloat("musicVolume", mvolume);
+    }
+
+    public void SetSFXVol()
+    {
+        float sfxvolume = SFXSlider.value;
+        audioMixer.SetFloat("SFX", Mathf.Log10(sfxvolume) * 20);
+        PlayerPrefs.SetFloat("sfxVolume", sfxvolume);
     }
 
     private void LoadVolume()
     {
-        volumeSlider.value = PlayerPrefs.GetFloat("masterVolume");
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        SFXSlider.value = PlayerPrefs.GetFloat("sfxVolume");
 
-        SetVolume();
+        SetMusicVol();
+        SetSFXVol();
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        SFXSource.PlayOneShot(clip);
     }
 }
