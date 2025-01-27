@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private float lastBubble;
     private float chargeStart;
     private bool chargin;
+    private float fireInputTime;
+    private float fireDuration = 5f;
 
     private float lastStep;
     private float stepFrequency = 0.5f;
@@ -148,20 +150,32 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerNumber == 1)
         {
-            if (Input.GetKeyDown(KeyCode.V) && Time.time >= lastShot + shotFireRate && canShoot && !chargin)
+            if (Input.GetKeyDown(KeyCode.V) && canBlow && !chargin)
             {
-                Shoot();
+                fireInputTime = Time.time;
             }
 
-            if (Input.GetKeyDown(KeyCode.B) && Time.time >= lastBubble + bubbleFireRate && canBlow)
+            if (Input.GetKey(KeyCode.V) && Time.time >= fireInputTime + fireDuration && Time.time >= lastBubble + bubbleFireRate && canBlow)
             {
                 ChargeBubbleStart();
             }
 
+            if (Input.GetKeyUp(KeyCode.V) && canShoot && !chargin)
+            {
+                if (canBlow && chargin)
+                {
+                    chargin = false;
+                    Blow();
+                }
+                else if (Time.time >= lastShot + shotFireRate)
+                {
+                    Shoot();
+                }
+            }
+
             if (Input.GetKeyUp(KeyCode.B) && chargin)
             {
-                chargin = false;
-                Blow();
+                
             }
         }
 
@@ -228,7 +242,7 @@ public class PlayerMovement : MonoBehaviour
                     newRotation.z = newRotation.z - rotation;
                 }
 
-                if (Input.GetKey(KeyCode.B) && chargin)
+                if (Input.GetKey(KeyCode.V) && chargin)
                 {
                     ChargeBubble();
                 }
