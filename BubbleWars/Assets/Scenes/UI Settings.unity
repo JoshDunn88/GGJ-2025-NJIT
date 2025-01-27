@@ -1208,22 +1208,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Player 2 Controls
-
-    Up Arrow - Up
-
-    Down Arrow - Down
-
-    Left
-    Arrow -  Rotate
-
-    Right Arrow - Rotate
-
-    ] - Slingshot
-
-    \ - Blow Bubble
-
-'
+  m_text: "Player 2 Controls\nP - Up\n; - Down\nL -  Rotate\n' - Rotate\nRight Shift:\n 
+    Tap - Slingshot\n  Hold - Blow bubble\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -5822,22 +5808,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Player 1 Controls
-
-    W - Up
-
-    S - Down
-
-    A -  Rotate
-
-    D -
-    Rotate
-
-    V - Slingshot
-
-    B - Blow bubble
-
-'
+  m_text: "Player 1 Controls\nW - Up\nS - Down\nA -  Rotate\nD - Rotate\nLeft Shift:\n 
+    Tap - Slingshot\n  Hold - Blow bubble\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -7440,22 +7412,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Player 1 Controls
-
-    W - Up
-
-    S - Down
-
-    A -  Rotate
-
-    D -
-    Rotate
-
-    V - Slingshot
-
-    B - Blow bubble
-
-'
+  m_text: "Player 1 Controls\nW - Up\nS - Down\nA -  Rotate\nD - Rotate\nLeft Shift:\n 
+    Tap - Slingshot\n  Hold - Blow bubble\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -8558,22 +8516,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Player 2 Controls
-
-    Up Arrow - Up
-
-    Down Arrow - Down
-
-    Left
-    Arrow -  Rotate
-
-    Right Arrow - Rotate
-
-    ] - Slingshot
-
-    \ - Blow Bubble
-
-'
+  m_text: "Player 2 Controls\nP - Up\n; - Down\nL -  Rotate\n' - Rotate\nRight Shift:\n 
+    Tap - Slingshot\n  Hold - Blow bubble\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
